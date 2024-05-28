@@ -80,7 +80,7 @@ def get_solar_data(coordinates):
 
    #https://maps.googleapis.com/maps/api/distancematrix/json?destinations="Weilova 1505, 102 00 Praha 15-Hostivař"&origins="Kongresové centrum Praha, vchod 6, 5. května 1640/65, Nusle, 140 21 Praha 4"&units=metric&key=AIzaSyBIiXcNl2xidDq-YP2t0ZhJ6_QHpzeH-U0
 
-#https://maps.googleapis.com/maps/api/geocode/json?address=U Břehu 1373/51, 102 00 Praha 15-Hostivař&key=AIzaSyBIiXcNl2xidDq-YP2t0ZhJ6_QHpzeH-U0
+#https://maps.googleapis.com/maps/api/geocode/json?address=Praha Kolbenova 9&key=AIzaSyBIiXcNl2xidDq-YP2t0ZhJ6_QHpzeH-U0
 
 https://solar.googleapis.com/v1/buildingInsights:findClosest?location.latitude=37.4450&location.longitude=-122.1390&requiredQuality=HIGH&key=YOUR_API_KEY
 
