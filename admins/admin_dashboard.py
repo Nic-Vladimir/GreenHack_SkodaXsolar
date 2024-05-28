@@ -36,7 +36,7 @@ def get_service_companies(status):
         conn = sqlite3.connect('database.db')
         conn.row_factory = sqlite3.Row
         cursor = conn.cursor()
-        if status = "All":
+        if status == "All":
             cursor.execute("SELECT * FROM service_companies")
             companies = cursor.fetchall()
             return companies
@@ -50,7 +50,7 @@ def get_service_companies(status):
     finally:
         conn.close()
 
-def admin_dashboard(active_user_email)
+def admin_dashboard(active_user_email):
     companies = st.selectbox("What companies to display?", ("All", "Pending", "Approved", "Rejected"))
     if companies == "Pending":
         st.title("Service companies waiting for approval")
@@ -65,7 +65,7 @@ def admin_dashboard(active_user_email)
                 st.write(f"Website: {company["company_website"]}")
                 st.write(f"Warehouse Address: {company["warehouse_address"]}")
                 st.write(f"E-mail: {company["email"]}")
-                with st.expander("Extra Details", expanded=False)
+                with st.expander("Extra Details", expanded=False):
                     st.write(f"Panel Price: {company["company_panelprice"]}")
                     st.write(f"Heat Pump Price: {company["company_heatpumpprice"]}")
                     st.write(f"Battery Price: {company["company_batterprice"]}")

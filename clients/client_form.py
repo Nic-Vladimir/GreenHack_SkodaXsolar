@@ -1,9 +1,6 @@
 import streamlit as st
 import sqlite3
 
-# ----Page Config----
-st.set_page_config(page_title="Škoda - Opti:Energy", page_icon="🌤", layout="wide")
-
 
 # Function to check for unfilled fields
 def check_for_unfilled_fields(*fields):
@@ -42,16 +39,13 @@ def client_form(active_user_email):
         col1, col2, col3, col4 = st.columns(4)
 
         with col1:
-            st.write("Electric Vehicle")
-            ev_option = st.selectbox("", ["I have", "I want", "I don't want"], key="ev_option")
+            ev_option = st.selectbox("Electric Vehicle", ["I have", "I want", "I don't want"], key="ev_option")
 
         with col2:
-            st.write("Heat Pump")
-            heat_pump_option = st.selectbox("", ["I have", "I want", "I don't want"], key="hp_option")
+            heat_pump_option = st.selectbox("Heat Pump", ["I have", "I want", "I don't want"], key="hp_option")
 
         with col3:
-            st.write("Solar Panels")
-            solar_panels_option = st.selectbox("", ["I have", "I want", "I don't want"], key="sp_option")
+            solar_panels_option = st.selectbox("Solar Panels", ["I have", "I want", "I don't want"], key="sp_option")
 
         with col4:
             #st.write("Battery")
@@ -62,7 +56,7 @@ def client_form(active_user_email):
         
         if submit_client_form:
             empty_field = None
-            elif not client_city:
+            if not client_city:
                 empty_field = "Adress: City"
             elif not client_street:
                 empty_field = "Adress: Street and number"
@@ -70,12 +64,12 @@ def client_form(active_user_email):
                 empty_field = "Current Consumption"
             elif not current_energy_cost:
                 empty_field = "Current Cost"
-            elif not password:
+
 
             if empty_field:
                 st.error(f"Please complete the following field: {empty_field}")
             else:
-                user_address = client city + " " + client_street
+                user_address = client_city + " " + client_street
                 coordinates = get_coordinates(user_address)
                 solar_data = get_solar_data(coordinates)
                 add_client_info(active_user_email, user_address, current_energy_consumption, solar_data["max_panels_area"], ev_option)

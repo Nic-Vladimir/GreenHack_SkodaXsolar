@@ -2,6 +2,10 @@ import streamlit as st
 import sqlite3
 import landing_page
 from database.database import *
+from landing_page import *
+from clients.client_form import *
+from clients.client_dashboard import *
+
 
 databases_setup()
 
@@ -21,12 +25,10 @@ st.sidebar.title("Navigation")
 page = st.sidebar.radio("", ["Welcome", "Form", "Dashboard"])
 
 # Display the selected page
-if page == "Welcome":
-    welcome_page()
-elif page == "Form":
-    form_page()
+if page == "Form":
+    clients.client_form()
 elif page == "Dashboard":
-    dashboard_page()
+    clients.client_dashboard()
 
 
 

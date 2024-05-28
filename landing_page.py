@@ -1,6 +1,10 @@
 import streamlit as st
 from database.database import *
 from database.database_utils import *
+from clients.client_form import *
+from clients.client_dashboard import *
+from admins.admin_dashboard import *
+from providers.providers_form import *
 
 # Function to display the Welcome page
 def landing_page():
@@ -10,23 +14,25 @@ def landing_page():
     # First column content
     with col1:
         st.title("Welcome")
-        st.write("Welcome to the Streamlit application. Use the sidebar to navigate through the pages.")
+        st.write("""At SkodaX, we understand the importance of making sustainable choices for a greener future. Our platform is dedicated to helping you navigate the world of sustainable technologies, with a particular focus on photovoltaic panels. We aim to provide you with the knowledge and tools necessary to make informed decisions that benefit both your wallet and the environment.
+Connect with Trusted Providers
+
+Our platform offers a seamless connection between clients and sustainable technology providers. Whether you're looking for solar panels, heat pumps, house batteries,""")
     
     # Second column content
     with col2:
         st.title("User Registration")
         st.write("Sign up and let's explore the benefits of solar energy!")
 
-        with st.form(key="user_registration"):
+        with st.form(key="initial_user_registration"):
 
             # Account type selection
-            user_type = ("Which best describes you?", ["Client", "Provider", "Admin"])
-            selected_option = st.selectbox("Choose an option:", user_type)
+            user_type = st.selectbox("Which best describes you?", ["Client", "Provider", "Admin"])
 
             # User info
-            email = st.text_input("Email", type="email", placeholder="john.doe@gmail.com")
+            email = st.text_input("Email", placeholder="john.doe@gmail.com")
             password = st.text_input("Password", type="password", placeholder="Create a password")
-            password_re = st.text_input("Password", type="password", placeholder="Re-enter password")
+            password_re = st.text_input("Password", type='password', placeholder="Re-enter password")
 
             # Submit button
             sign_up = st.form_submit_button(label="Sign up")
@@ -46,15 +52,15 @@ def landing_page():
                 st.error(f"Please complete the following field: {empty_field}")
             else:
                 if user_type == "Client":
-                    register_client(username, email, password)
+                    register_client(email, password)
                     st.success("Registration successful!")
                     client_form(email)
                 elif user_type == "Provider":
-                    register_provider(username, email, password)
+                    register_provider(email, password)
                     st.success("Registration successful!")
-                    provider_form(email)
+                    providers_form(email)
                 elif user_type == "Admin":
-                    register_admin(username, email, password)
+                    register_admin(email, password)
                     st.success("Registration successful!")
                     admin_dashboard(email)
 
@@ -63,7 +69,7 @@ def landing_page():
             with st.form(key="user_login"):
                 # Login form elements
                 email = st.text_input("Email", placeholder="john.doe@gmail.com")
-                password = st.text_input("Password", type="password123")
+                password = st.text_input("Password", type="password", placeholder="password123")
                 login_button = st.form_submit_button(label="Log In")
 
                 # Logic for login button press (replace with your actual authentication logic)

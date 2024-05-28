@@ -1,9 +1,6 @@
 import streamlit as st
 import sqlite3
 
-# ----Page Config----
-st.set_page_config(page_title="Škoda - Opti:Energy", page_icon="🌤", layout="wide")
-
 
 def providers_form(active_user_email):
     st.title("Provider Form Page")
@@ -40,7 +37,7 @@ def providers_form(active_user_email):
         
         if submit_client_form:
             empty_field = None
-            elif not client_city:
+            if not provider_city:
                 empty_field = "Adress: City"
             elif not client_street:
                 empty_field = "Adress: Street and number"
@@ -48,12 +45,11 @@ def providers_form(active_user_email):
                 empty_field = "Current Consumption"
             elif not current_energy_cost:
                 empty_field = "Current Cost"
-            elif not password:
 
             if empty_field:
                 st.error(f"Please complete the following field: {empty_field}")
             else:
-                provider_address = client city + " " + client_street
+                provider_address = provider_city + " " + provider_street
                 coordinates = get_coordinates(provider_address)
                 solar_data = get_solar_data(coordinates)
                 add_client_info(active_user_email, provider_address, current_energy_consumption, solar_data["max_panels_area"], ev_option)

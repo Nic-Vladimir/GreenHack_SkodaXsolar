@@ -7,20 +7,20 @@ def get_db_connection(db_name):
 
 
 # User registration
-def register_client(fullname, client_email, password):
-    conn = get_db_connection('clients')
+def register_client(email, password):
+    conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute('''
-        INSERT INTO clients (fullname, client_email, password)
-        VALUES (?, ?, ?)
-    ''', (fullname, client_email, password))
+        INSERT INTO clients (email, password)
+        VALUES (?, ?)
+    ''', (email, password))
     conn.commit()
     conn.close()
 
 
 # Function to update client info
 def add_client_info(client_email, user_address, current_consumption, panel_area, vehicle):
-    conn = get_db_connection('clients')
+    conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute('''
         UPDATE clients
@@ -31,20 +31,20 @@ def add_client_info(client_email, user_address, current_consumption, panel_area,
     conn.close()
 
 
-def register_provider(username, email, password):
-    conn = get_db_connection('providers')
+def register_provider(email, password):
+    conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute('''
-        INSERT INTO providers (username, email, password)
-        VALUES (?, ?, ?)
-    ''', (username, email, password))
+        INSERT INTO providers (email, password)
+        VALUES (?, ?)
+    ''', (email, password))
     conn.commit()
     conn.close()
 
 
 # Function to add a new provider
 def add_provider(email, company_name, company_DUNS, company_website, warehouse_address, price_per_panel, heatpump_price, battery_price, charger_price, transport_price_per_km):
-    conn = get_db_connection('providers')
+    conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute('''
         UPDATE providers
@@ -56,13 +56,13 @@ def add_provider(email, company_name, company_DUNS, company_website, warehouse_a
 
 
 # Function to add a new admin
-def register_admin(username, email, password):
-    conn = get_db_connection('admins')
+def register_admin(email, password):
+    conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute('''
-        INSERT INTO admins (username, email, password)
+        INSERT INTO admins (email, password)
         VALUES (?, ?, ?)
-    ''', (username, email, password))
+    ''', (email, password))
     conn.commit()
     conn.close()
 

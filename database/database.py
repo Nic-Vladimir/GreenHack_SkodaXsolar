@@ -11,9 +11,8 @@ def create_database(db_name, table_name, table_schema):
 # Schema definitions
 clients_schema = '''
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    email TEXT NOT NULL,
-    fullname TEXT NOT NULL,
-    password TEXT NOT NULL,
+    email TEXT,
+    password TEXT,
     user_address TEXT,
     current_energy REAL,
     panel_area REAL,
@@ -23,11 +22,11 @@ clients_schema = '''
 
 providers_schema = '''
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    email TEXT NOT NULL,
-    password TEXT NOT NULL,
-    company_name TEXT NOT NULL,
-    company_DUNS TEXT NOT NULL,
-    company_website TEXT NOT NULL,
+    email TEXT,
+    password TEXT,
+    company_name TEXT,
+    company_DUNS TEXT,
+    company_website TEXT,
     warehouse_address TEXT,
     panel_price_per_meter REAL,
     heatpump_price REAL,
@@ -36,13 +35,13 @@ providers_schema = '''
     transport_price_per_km REAL,
     active_user BOOLEAN DEFAULT FALSE,
     status TEXT DEFAULT Pending,
-    reason_rejected TEXT NOT NULL
+    reason_rejected TEXT
 '''
 
 admins_schema = '''
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    email TEXT NOT NULL,
-    password TEXT NOT NULL,
+    email TEXT,
+    password TEXT,
     active_user BOOLEAN DEFAULT FALSE
 '''
 
